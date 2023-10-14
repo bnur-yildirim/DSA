@@ -6,7 +6,7 @@
 	Last Updated : 14.10.2023
 */
 
-/* C program to create one node linked list */
+/* C program to create a singly linked list */
 
 struct Node {
 	int data;        
@@ -24,6 +24,14 @@ int main(void)
 
 	//printing list
 	printf("%d ", head->data);
+
+	//creating second node
+	struct Node* current = (struct Node*)malloc(sizeof(struct Node));
+	current->data = 98;
+	current->next = NULL;           //now there are two sepeate nodes
+
+	//connecting nodes
+	head->next = current;
 
 	return (0);
 }
