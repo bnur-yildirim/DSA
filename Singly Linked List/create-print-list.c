@@ -2,11 +2,11 @@
 #include <stdlib.h>
 
 /*	Programmer   : Beyza Nur Yıldırım
-	Date         : 13.10.2023
+	Date         : 14.10.2023
 	Last Updated : 14.10.2023
 */
 
-/* C program to traverse singly linked list */
+/* C program to create and print singly linked list */
 
 struct Node {
 	int data;
