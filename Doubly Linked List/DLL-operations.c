@@ -1,9 +1,10 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 
 /* Programmer  : Beyza Nur Yıldırım
    Date        : 15.10.2023
-   Last Update : 16.10.2023
+   Last Update : 19.10.2023
 */
 
 /* This is a program to practice doubly linked lists */
@@ -26,6 +27,9 @@ void displayLast(struct Node* last);
 // Function to free the memory used by the linked list
 void freeList(struct Node* head);
 
+// Function to delete a node from the doubly linked list from any position
+void deleteNode(struct Node** head, struct Node** last);
+
 int main(void) {
     int count;
     struct Node* head = NULL;
@@ -40,6 +44,10 @@ int main(void) {
 
     displayFirst(head);
     displayLast(last);
+
+    deleteNode(&head, &last);
+
+    displayFirst(head);
 
     // Free the allocated memory
     freeList(head);
@@ -67,7 +75,8 @@ void createList(struct Node** head, struct Node** last) {
     if (*head == NULL) {
         *head = newNode;
         *last = newNode;
-    } else {
+    }
+    else {
         newNode->next = *head;
         (*head)->prev = newNode;
         *head = newNode;
@@ -113,4 +122,40 @@ void freeList(struct Node* head) {
         free(temp);
     }
     printf("Memory deallocated successfully.\n");
+}
+// Function to delete a node from the doubly linked list from any position
+void deleteNode(struct Node** head, struct Node** last) {
+    int num;
+    struct Node* curr = *head;
+    
+    if (*head == NULL) {
+        printf("List is empty.\n");
+        return NULL;
+    }
+    printf("Enter the position you want to delete: ");
+    scanf("%d", &num);
+    
+    for (int i = 1; i < num; i++) {
+        curr = curr->next;
+    }
+    curr->data = NULL;
+
+    if (curr == (*head)) {
+        curr->next->prev = NULL;
+        *head = curr->next;
+        curr->next = NULL;
+    }
+    else if (curr == (*last)) {
+        curr->prev->next = NULL;
+        *last = curr->prev;
+        curr->prev = NULL;
+    }
+    else {
+        curr->prev->next = curr->next;
+        curr->next->prev = curr->prev;
+        curr->prev = NULL;
+        curr->next = NULL;
+    }
+    free(curr);
+    printf("Element in position %d deleted succesfully.\n", num);
 }
