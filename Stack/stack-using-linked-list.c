@@ -3,9 +3,9 @@
 #include <limits.h>
 
 /* 
-	  Programmer  : Beyza Nur Yıldırım
-    Date        : 01.10.2023
-    Last Update : 01.10.2023
+    Programmer  : Beyza Nur Yıldırım
+    Date        : 01.11.2023
+    Last Update : 01.11.2023
 */
 
 /* This a program to implement stack using linked list */
